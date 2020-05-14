@@ -1,0 +1,17 @@
+div.logo {
+    background-color: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.logo img {
+    padding: 0px 15px;
+    width: 100%;
+}
+
+@media(max-width: 576px) {
+    div.logo img {
+        width: 200px;
+    }
+}

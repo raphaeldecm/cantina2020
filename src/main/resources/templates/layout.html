@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Spring Boot</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+    <link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/layout.css" rel="stylesheet" />
+    <link href="/css/fragments/footer.css" rel="stylesheet" />
+    <link href="/css/fragments/header.css" rel="stylesheet" />
+    <link href='/css/fragments/logo.css' rel='stylesheet'/>
+    <link href="/css/fragments/nav.css" rel="stylesheet" />
+    <link href="/css/fragments/content.css" rel="stylesheet" />
+</head>
+<body>    
+    <div class="app">
+
+        <div class="logo">
+            <aside class="logo" th:replace="fragments/logo :: logo">
+                <span>logo</span>
+            </aside>
+        </div>
+        <div class="header">
+            <header class="header" layout:fragment="header">
+                <div>header</div>
+            </header>
+        </div>
+        <div class="menu-area">
+            <aside class="menu-area" th:replace="fragments/nav :: menu-area">
+                <span>menu</span>
+            </aside>
+        </div>
+        <div class="content">
+            <main class="content container-fluid" layout:fragment="content">
+                <div class="p-3 mt-3">
+                    <span>content</span>
+                </div>
+            </main>
+        </div>
+        <div class="footer">
+            <footer class="footer" th:replace="fragments/footer :: footer">
+                <div>footer</div>
+            </footer>
+        </div>
+	</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
