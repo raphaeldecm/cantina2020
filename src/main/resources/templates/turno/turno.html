@@ -13,8 +13,6 @@
     </header>
 
     <main class="container" layout:fragment="content">
-        <div th:replace="fragments/alert"></div>
-        <div th:replace="fragments/modal :: modal"></div>
         
         <div class="p-3 mt-3">
             <h3 th:text="${turno.id == null} ? Cadastrar : Editando"></h3>

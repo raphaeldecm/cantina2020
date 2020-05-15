@@ -46,6 +46,8 @@
             </aside>
         </div>
         <div class="content">
+            <div th:replace="fragments/alert"></div>
+            <div th:replace="fragments/modal :: modal"></div>
             <main class="content container-fluid" layout:fragment="content">
                 <div class="p-3 mt-3">
                     <span>content</span>
