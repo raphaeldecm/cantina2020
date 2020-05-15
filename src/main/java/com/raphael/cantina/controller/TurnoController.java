@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.raphael.cantina.model.Turno;
 import com.raphael.cantina.service.TurnoService;
 
+import org.codehaus.groovy.runtime.powerassert.SourceText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -54,13 +55,13 @@ public class TurnoController {
 	}
 
     @GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 
 		if (serviceTurno.turnoTemTurma(id)) {
-			model.addAttribute("fail", "Turno não removido. Possui turma(s) vinculada(s).");
+			attr.addFlashAttribute("fail", "Turno não removido. Possui turma(s) vinculada(s).");
 		} else {
 			serviceTurno.excluir(id);
-			model.addAttribute("success", "Turno excluído com sucesso.");
+			attr.addFlashAttribute("success", "Turno excluído com sucesso");
 		}
 		
 		return "redirect:/turnos/cadastrar";
