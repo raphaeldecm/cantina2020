@@ -23,6 +23,9 @@
     <link href='/css/fragments/logo.css' rel='stylesheet'/>
     <link href="/css/fragments/nav.css" rel="stylesheet" />
     <link href="/css/fragments/content.css" rel="stylesheet" />
+
+
+    <link href="/css/contents/turno.css" rel="stylesheet" />
 </head>
 <body>    
     <div class="app">
@@ -61,6 +64,24 @@
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+	
+		var url = '';
+		
+		$('button[id*="btn_"]').click(function() {
+			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+		});
+		
+		$('#ok_confirm').click(function() {
+			document.location.href = url;
+		});
+	    
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+    </script>
+
 </body>
 </html>
