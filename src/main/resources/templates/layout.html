@@ -93,6 +93,7 @@
         //e recarregar o nome e turno ao modificar turno.
         $(document).ready(function(){
 			$('#turno').change(function(){
+                
 				var sPageURL0 = window.location.href.split("/")[3];
 				var sPageURL1 = window.location.href.split("/")[4];
 
@@ -102,25 +103,27 @@
 	        	var alunoId = $("#id");
 	        	
 	        	if((sPageURL0 == "alunos" && sPageURL1 == "cadastrar")){
-	        		url = "/alunos/cadastrar/"+selectedOption.val()+"/"+nome.val();
+                    url = "/alunos/cadastrar/"+selectedOption.val()+"/"+nome.val();
+                    window.location.href = url;	
 	        	} else if ((sPageURL0 == "alunos" && sPageURL1 == "editar")){
-	        		url = "/alunos/editar/"+alunoId.val()+"/"+selectedOption.val();	
+                    url = "/alunos/editar/"+alunoId.val()+"/"+selectedOption.val();	
+                    window.location.href = url;	
 	        	}
-				window.location.href = url;	
+				// window.location.href = url;	
 			});
         });
         
         $(document).ready(function(){
-			var sPageURL1 = window.location.href.split("/")[5];
-			var sPageURL2 = window.location.href.split("/")[4];
-			var sPageURL3 = window.location.href.split("/")[6];
-			
-			if(sPageURL1 != undefined){
-				if(sPageURL2 == "cadastrar"){
-					$("#turno").val(sPageURL1);
+			var idElemento = window.location.href.split("/")[5];
+			var operacao = window.location.href.split("/")[4];
+			var idTurno = window.location.href.split("/")[6];
+            
+            if(idElemento != undefined){
+				if(operacao == "cadastrar"){
+					$("#turno").val(idElemento);
 				}
-				if(sPageURL2 == "editar"){
-					$("#turno").val(sPageURL3);	
+				if(operacao == "editar"){
+					$("#turno").val(idTurno);	
 				}
 			}	
         });

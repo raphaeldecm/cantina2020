@@ -2,19 +2,23 @@ package com.raphael.cantina.controller;
 
 import java.util.List;
 
+import com.raphael.cantina.model.Aluno;
 import com.raphael.cantina.model.Turma;
 import com.raphael.cantina.model.Turno;
+import com.raphael.cantina.service.AlunoService;
 import com.raphael.cantina.service.TurmaService;
 import com.raphael.cantina.service.TurnoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -25,7 +29,10 @@ public class TurmaController {
     TurmaService serviceTurma;
 
     @Autowired
-    TurnoService serviceTurno;
+	TurnoService serviceTurno;
+	
+	@Autowired
+	AlunoService serviceAluno;
 
     @GetMapping(value = "/cadastrar")
     public String cadastrar(Turma turma, ModelMap model){
@@ -46,9 +53,13 @@ public class TurmaController {
 		return "redirect:/turmas/cadastrar";
     }
     
-    @GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+    @GetMapping("/editar/{id}/{idTurno}")
+	public String preEditar(@PathVariable("id") Long id, @PathVariable("idTurno") Long idTurno, ModelMap model) {
+
+		List<Turno> turnos = serviceTurno.buscarTodos();
+
 		model.addAttribute("turma", serviceTurma.buscarPorId(id));
+		model.addAttribute("turnos", turnos);
 		return "/turma/turma";
 	}
 	
@@ -61,16 +72,28 @@ public class TurmaController {
     }
     
     @GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 		
 		if (serviceTurma.turmaTemAluno(id)) {
-			model.addAttribute("fail", "Turma não removida. Possui aluno(s) vinculado(s).");
+			attr.addFlashAttribute("fail", "Turma não removida. Possui aluno(s) vinculado(s).");
 		} else {
 			serviceTurma.excluir(id);
-			model.addAttribute("success", "Turma excluído com sucesso.");
+			attr.addFlashAttribute("success", "Turma excluído com sucesso.");
 		}
 		
 		return "redirect:/turmas/cadastrar";
-    }
-    
+	}
+	
+	@GetMapping("/listarAlunos/{id}")
+	public String alunosPorTurma(@PathVariable("id") Long id, Turma turma, RedirectAttributes attr){
+
+		Turma turmaSelecionada = serviceTurma.buscarPorId(id);
+		List<Aluno> alunos = serviceAluno.buscarTodosPorTurma(turmaSelecionada);
+
+		attr.addFlashAttribute("turmaSelecionada", turmaSelecionada);
+		attr.addFlashAttribute("alunos", alunos);
+		attr.addFlashAttribute("tabActived", "active");
+
+		return "redirect:/turmas/cadastrar";
+	}
 }

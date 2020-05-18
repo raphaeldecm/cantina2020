@@ -52,7 +52,7 @@
                                 <select id="turno" class="form-control" th:field="*{turno}"
                                     th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
                                     <option value="">Selecione</option>
-                                    <option th:each="d : ${turnos}" 
+                                    <option th:each="d : ${turnos}"
                                             th:value="${d.id}" th:text="${d.nome}">Administração</option>
                                 </select>
                                 <div class="invalid-feedback">
