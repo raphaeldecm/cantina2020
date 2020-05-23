@@ -71,7 +71,7 @@
                             <div class="form-group col-12">
                                 <label for="saldo">Saldo</label>
                                 <input type="text" class="form-control" id="saldo" placeholder="0,00" 
-                                    th:field="*{saldo}"/>
+                                data-mask="-#.##0,00" data-mask-reverse="true" th:field="*{saldo}"/>
                             </div>
                         </div>
                         <hr />

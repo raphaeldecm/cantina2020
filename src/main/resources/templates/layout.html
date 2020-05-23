@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:th="http://www.thymeleaf.org"
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Spring Boot</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
-	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
     <link href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -22,14 +22,15 @@
     <link href="/css/layout.css" rel="stylesheet" />
     <link href="/css/fragments/footer.css" rel="stylesheet" />
     <link href="/css/fragments/header.css" rel="stylesheet" />
-    <link href='/css/fragments/logo.css' rel='stylesheet'/>
+    <link href='/css/fragments/logo.css' rel='stylesheet' />
     <link href="/css/fragments/nav.css" rel="stylesheet" />
     <link href="/css/fragments/content.css" rel="stylesheet" />
 
-
     <link href="/css/contents/turno.css" rel="stylesheet" />
+    <link href="/css/contents/compra.css" rel="stylesheet" />
 </head>
-<body>    
+
+<body>
     <div class="app">
 
         <div class="logo">
@@ -61,102 +62,155 @@
                 <div>footer</div>
             </footer>
         </div>
-	</div>
-	<!-- Bootstrap core JavaScript
+    </div>
+    <!-- Bootstrap core JavaScript
     ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script src="/js/jquery.maskMoney.min.js" type="text/javascript"></script>
-    
+
+    <!-- SCRIPTS FOR SELECT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
     <script type="text/javascript">
-	
-		var url = '';
-		
-		$('button[id*="btn_"]').click(function() {
-			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
-		});
-		
-		$('#ok_confirm').click(function() {
-			document.location.href = url;
-		});
-	    
-		$(function() {
-			$('[data-toggle="popover"]').popover();
+
+        var url = '';
+
+        $('button[id*="btn_"]').click(function () {
+            url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
         });
-        
+
+        $('#ok_confirm').click(function () {
+            document.location.href = url;
+        });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+        //Tooltip formulários
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
         // Enviando via url nome, saldo e id do aluno para
         // as funções cadastrar e editar ao modificar o select
         //turno, com o objetivo de listar as turmas do turno
         //e recarregar o nome e turno ao modificar turno.
-        $(document).ready(function(){
-			$('#turno').change(function(){
-                
-				var sPageURL0 = window.location.href.split("/")[3];
-				var sPageURL1 = window.location.href.split("/")[4];
+        $(document).ready(function () {
+            $('#turno').change(function () {
 
-				var selectedOption = $('#turno option:selected');
-	        	var nome = $("#nome");
-	        	var saldo = $("#saldo");
-	        	var alunoId = $("#id");
-	        	
-	        	if((sPageURL0 == "alunos" && sPageURL1 == "cadastrar")){
-                    url = "/alunos/cadastrar/"+selectedOption.val()+"/"+nome.val();
-                    window.location.href = url;	
-	        	} else if ((sPageURL0 == "alunos" && sPageURL1 == "editar")){
-                    url = "/alunos/editar/"+alunoId.val()+"/"+selectedOption.val();	
-                    window.location.href = url;	
-	        	}
-				// window.location.href = url;	
-			});
+                var sPageURL0 = window.location.href.split("/")[3];
+                var sPageURL1 = window.location.href.split("/")[4];
+
+                var selectedOption = $('#turno option:selected');
+                var nome = $("#nome");
+                var saldo = $("#saldo");
+                var alunoId = $("#id");
+
+                if ((sPageURL0 == "alunos" && sPageURL1 == "cadastrar")) {
+                    url = "/alunos/cadastrar/" + selectedOption.val() + "/" + nome.val();
+                    window.location.href = url;
+                } else if ((sPageURL0 == "alunos" && sPageURL1 == "editar")) {
+                    url = "/alunos/editar/" + alunoId.val() + "/" + selectedOption.val();
+                    window.location.href = url;
+                }
+                // window.location.href = url;	
+            });
         });
-        
-        $(document).ready(function(){
-			var idElemento = window.location.href.split("/")[5];
-			var operacao = window.location.href.split("/")[4];
-			var idTurno = window.location.href.split("/")[6];
+
+        $(document).ready(function () {
+            var idElemento = window.location.href.split("/")[5];
+            var operacao = window.location.href.split("/")[4];
+            var idTurno = window.location.href.split("/")[6];
+            var modulo = window.location.href.split("/")[3];
             
-            if(idElemento != undefined){
-				if(operacao == "cadastrar"){
-					$("#turno").val(idElemento);
-				}
-				if(operacao == "editar"){
-					$("#turno").val(idTurno);	
-				}
-			}	
+            if (idElemento != undefined && modulo !== 'compras') {
+                if (operacao == "cadastrar") {
+                    $("#turno").val(idElemento);
+                }
+                if (operacao == "editar") {
+                    $("#turno").val(idTurno);
+                }
+            }
         });
-        
-        $(document).ready(function(){
-			var sPageURL1 = window.location.href.split("/")[5];
-			var sPageURL2 = window.location.href.split("/")[4];
-			
-			if(sPageURL1 != undefined){
-				if(sPageURL2 == "buscarAlunoPorId"){
-					$("#aluno").val(sPageURL1);
-				}
-			}
-		});
 
-        $(document).ready(function(){
-			$("#saldo").maskMoney({
-				prefix:'R$ ', 
-				allowNegative: true, 
-				thousands:'.', 
-				decimal:',', 
-				affixesStay: false
-			});
-			$("#valor").maskMoney({
-				prefix:'R$ ', 
-				allowNegative: true, 
-				thousands:'.', 
-				decimal:',', 
-				affixesStay: false
-			});
+        $(document).ready(function () {
+            var sPageURL1 = window.location.href.split("/")[5];
+            var sPageURL2 = window.location.href.split("/")[4];
+
+            if (sPageURL1 != undefined) {
+                if (sPageURL2 == "buscarAlunoPorId") {
+                    $("#aluno").val(sPageURL1);
+                }
+            }
         });
+        /*
+            Carregar dados do aluno selecionado no select box.
+        */
+
+        $(document).ready(function () {
+            $('#aluno').change(function () {
+                var op = window.location.href.split("/")[3];
+                var selectedOption = $('#aluno option:selected');
+                if (selectedOption.val() == 0) {
+                    $("#aluno").val(0);
+                    $("#saldo").val('0,00');
+                } else {
+                    if (op == "compras") {
+                        url = "/compras/buscarAlunoPorId/" + selectedOption.val();
+                        window.location.href = url;
+                    }
+                    if (op == "pagamentos") {
+                        url = "/pagamentos/buscarAlunoPorId/" + selectedOption.val();
+                        window.location.href = url;
+                    }
+                }
+            });
+        });
+
+        //Carregar alunos ao editar compra.
+        $(document).ready(function () {
+            var compras = window.location.href.split("/")[3];
+            var op = window.location.href.split("/")[4]
+            var idAluno = window.location.href.split("/")[6];
+
+            if (compras === "compras" && op === "editar") {
+                $("#aluno").val(idAluno);
+            }
+        });
+
+        //Select with search.
+        $(document).ready(function () {
+            //change selectboxes to selectize mode to be searchable
+            $("#aluno").select2();
+        });
+
+        $(document).ready(function () {
+            $('#saldo').maskMoney({
+                prefix:'R$ ',
+                allowNegative: true,
+                thousands:'.',
+                decimal:',',
+                affixesStay: false
+            });
         
+            $("#valor").maskMoney({
+                prefix: 'R$ ',
+                allowNegative: true,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: false
+            });
+        });
+
     </script>
 
 </body>
+
 </html>
