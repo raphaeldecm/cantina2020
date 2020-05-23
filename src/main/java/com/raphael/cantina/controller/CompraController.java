@@ -129,7 +129,7 @@ public class CompraController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, ModelMap model) {
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 
         Compra compra = serviceCompra.buscarPorId(id);
 
@@ -142,7 +142,7 @@ public class CompraController {
         serviceAluno.editar(aluno);
 
         serviceCompra.excluir(id);
-        model.addAttribute("success", "Compra excluída com sucesso.");
+        attr.addFlashAttribute("success", "Compra excluída com sucesso.");
         return "redirect:/compras/cadastrar";
     }
 }

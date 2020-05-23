@@ -9,7 +9,7 @@
 
     <header class="header d-none d-sm-flex flex-column" layout:fragment="header">
         <h1 class="mt-3">
-            <i class=fa fa-home}></i> Compra
+            <i class=fa fa-home}></i> Sistema para Gerenciamento de Cantina - SisGeC
         </h1>
         <p class="lead text-muted">Página Compra.</p>
 
@@ -138,9 +138,12 @@
 		                        <td th:text="${d.aluno.turno.nome}">turno</td>
                                 <td th:text="|R$ ${{d.valor}}|">turno</td>
                                 <td> 
-                                    <i class="material-icons" 
+                                    <i class="material-icons"
+                                    data-toggle="tooltip"
+                                    th:attr="title=${d.situacao == true ? 'Pago' : 'Em aberto'}" 
                                     th:classappend="${d.situacao == true} ? 'icon-green' : 'icon-orange'"
-                                    th:text="${d.situacao == true} ? 'check_circle_outline' : 'remove_circle_outline'"></span> </td>
+                                    th:text="${d.situacao == true} ? 'check_circle_outline' : 'remove_circle_outline'">
+                                    <span title="Pago"></span> </td>
 		                        <td colspan="2">
 		                            <a class="btn btn-info btn-sm" th:href="@{/compras/editar/{idCompra}/{idAluno} (idCompra=${d.id}, idAluno=${d.aluno.id}) }" role="button">
 		                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>

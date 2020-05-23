@@ -15,7 +15,7 @@ public class StringToAlunoConverter implements Converter<String, Aluno>{
 	
 	@Override
 	public Aluno convert(String text) {
-		// TODO Auto-generated method stub
+		
 		if(text.isEmpty()) {
 			return null;
 		}

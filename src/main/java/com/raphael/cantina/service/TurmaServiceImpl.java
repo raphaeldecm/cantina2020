@@ -52,7 +52,7 @@ public class TurmaServiceImpl implements TurmaService{
 
 	@Override
 	public List<Turma> buscarPorTurno(Turno turno) {
-		// TODO Auto-generated method stub
+		
 		return dao.findByTurno(turno);
 	}
 

@@ -15,7 +15,7 @@ public class StringToTurnoConverter implements Converter<String, Turno>{
 	
 	@Override
 	public Turno convert(String text) {
-		// TODO Auto-generated method stub
+		
 		if(text.isEmpty()) {
 			return null;
 		} 
