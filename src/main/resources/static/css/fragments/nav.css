@@ -1,36 +1,30 @@
 aside.menu-area {
     background-color: var(--bg-dark);
-    box-shadow: 
+    box-shadow:
         2px 0 10px 0 rgba(0, 0, 0, 0.12),
         2px 0 15px 0 rgba(0, 0, 0, 0.19);
     height: 100%;
+}
+
+.navbar a:hover {
+    background: linear-gradient(to right, var(--bg-dark), #00d4ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 nav {
     list-style-type: none;
 }
 
-hr {
-    border-top: 1px solid rgb(233, 233, 233);
-}
-
-.menu a {
+.navbar a {
     /* cada link em uma linha */
-    display: block; 
+    display: block;
     text-decoration: none;
     color: #FFF;
     padding: 15px;
     font-size: 20px;
 }
 
-.menu a:hover {
-    /* background: linear-gradient(135deg, #07a7e3 0%, #32dac3 100%); */
-    /* background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%); */
-    background: linear-gradient(135deg, rgb(46, 80, 99) 0%, rgb(47, 77, 94) 100%);
-}
-
 @media(max-width: 768px) {
-    .menu {
+    .navbar {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -40,13 +34,13 @@ hr {
         height: 50px;
     }
 
-    .menu a {
+    .navbar a {
         display: inline;
         padding: 10px;
         margin: 0px;
     }
 
-    .menu {
+    .navbar {
         height: 50px;
         justify-content: space-around;
     }

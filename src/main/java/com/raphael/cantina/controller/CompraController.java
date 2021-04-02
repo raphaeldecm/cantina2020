@@ -12,6 +12,7 @@ import com.raphael.cantina.service.CompraService;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +29,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/compras")
 public class CompraController {
 
+    @Value("${application.name}")
+    private String applicationName;
+
     @Autowired
     CompraService serviceCompra;
 
@@ -37,6 +41,7 @@ public class CompraController {
     @GetMapping(value = "/cadastrar")
     public String compra(Compra compra, ModelMap model) {
         model.addAttribute("compras", serviceCompra.buscarTodos());
+        model.addAttribute("applicationName", applicationName);
         return "/compra/compra";
     }
 

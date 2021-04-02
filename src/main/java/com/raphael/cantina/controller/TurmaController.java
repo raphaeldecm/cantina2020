@@ -10,6 +10,7 @@ import com.raphael.cantina.service.TurmaService;
 import com.raphael.cantina.service.TurnoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/turmas")
 public class TurmaController {
 
+	@Value("${application.name}")
+	private String applicationName;
+
     @Autowired
     TurmaService serviceTurma;
 
@@ -35,6 +39,7 @@ public class TurmaController {
     @GetMapping(value = "/cadastrar")
     public String cadastrar(Turma turma, ModelMap model){
         model.addAttribute("turmas", serviceTurma.buscarTodos());
+        model.addAttribute("applicationName", applicationName);
         return "/turma/turma";
     }
 

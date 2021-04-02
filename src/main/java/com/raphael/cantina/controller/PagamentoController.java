@@ -11,6 +11,7 @@ import com.raphael.cantina.service.CompraService;
 import com.raphael.cantina.service.PagamentoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/pagamentos")
 public class PagamentoController {
 
+    @Value("${application.name}")
+    private String applicationName;
+
     @Autowired
     PagamentoService servicePagamento;
 
@@ -36,6 +40,7 @@ public class PagamentoController {
     @GetMapping(value = "/cadastrar")
     public String pagamento(Pagamento pagamento, ModelMap model) {
         model.addAttribute("pagamentos", servicePagamento.buscarTodos());
+        model.addAttribute("applicationName", applicationName);
         return "/pagamento/pagamento";
     }
 

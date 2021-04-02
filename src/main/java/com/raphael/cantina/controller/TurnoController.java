@@ -4,6 +4,7 @@ import com.raphael.cantina.model.Turno;
 import com.raphael.cantina.service.TurnoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +16,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping(value = "/turnos")
 public class TurnoController {
-    
+
+	@Value("${application.name}")
+	private String applicationName;
+
     @Autowired
     private TurnoService serviceTurno;
 
     @GetMapping(value = "/cadastrar")
     public String cadastrar(Turno turno, ModelMap model){
 		model.addAttribute("turnos", serviceTurno.buscarTodos());
+		model.addAttribute("applicationName", applicationName);
         return "/turno/turno";
     }
 

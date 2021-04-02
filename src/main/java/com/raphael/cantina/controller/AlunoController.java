@@ -11,6 +11,7 @@ import com.raphael.cantina.service.TurmaService;
 import com.raphael.cantina.service.TurnoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindException;
@@ -28,6 +29,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/alunos")
 public class AlunoController {
 
+	@Value("${application.name}")
+	private String applicationName;
+
     @Autowired
     AlunoService serviceAluno;
 
@@ -39,6 +43,7 @@ public class AlunoController {
     
     @GetMapping(value="/cadastrar")
     public String cadastrar(Aluno aluno, ModelMap model) {
+    	model.addAttribute("applicationName", applicationName);
         model.addAttribute("alunos", serviceAluno.buscarTodos());
         return "/aluno/aluno";
     }

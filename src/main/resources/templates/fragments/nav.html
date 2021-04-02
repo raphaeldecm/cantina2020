@@ -10,31 +10,36 @@
 <body>
     
     <aside class="menu-area" th:fragment="menu-area">
-        <nav class="menu">
-            <li class="nav-item">
-                <a href="/" class="nav-item active"><i class="material-icons">house</i> Início</a>
-            </li>
-            <hr />
-            <li class="nav-item">
-                <a href="/compras/cadastrar" class="nav-item active"><i class="material-icons">shopping_cart</i> Compras</a>
-            </li>
-            <li class="nav-item">
-                <a href="/pagamentos/cadastrar" class="nav-item active"><i class="material-icons">payment</i> Pagamentos</a>
-            </li>
-            <hr />
-            <li class="nav-item">
-                <a href="/alunos/cadastrar" class="nav-item active"><i class="material-icons">person</i> Aluno</a>
-            </li>
-            <li class="nav-item">
-                <a href="/turmas/cadastrar" class="nav-item active"><i class="material-icons">group</i> Turmas</a>
-            </li>
-            <li class="nav-item">
-                <a href="/turnos/cadastrar" class="nav-item active"><i class="material-icons">access_time</i> Turno</a>
-            </li>
-            <hr />
-            <li class="nav-item">
-                <a href="/usuarios/cadastrar" class="nav-item active"><i class="material-icons">lock</i> Usuários</a>
-            </li>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="nav flex-column mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a href="/" class="nav-item active"><i class="material-icons">house</i> Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/compras/cadastrar" class="nav-item active"><i class="material-icons">shopping_cart</i> Compras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/pagamentos/cadastrar" class="nav-item active"><i class="material-icons">payment</i> Pagamentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/alunos/cadastrar" class="nav-item active"><i class="material-icons">person</i> Aluno</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/turmas/cadastrar" class="nav-item active"><i class="material-icons">group</i> Turmas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/turnos/cadastrar" class="nav-item active"><i class="material-icons">access_time</i> Turno</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/usuarios/cadastrar" class="nav-item active"><i class="material-icons">lock</i> Usuários</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </aside>
 
