@@ -6,40 +6,49 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='/css/fragments/nav.css'>
+    
 </head>
 <body>
     
     <aside class="menu-area" th:fragment="menu-area">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="nav flex-column mr-auto mt-2 mt-lg-0">
+        
+        <div class="logo">
+            <img class="img_logo" src="/imgs/logo_small.svg" alt="">
+            <h2><span>GECES</span></h2>
+        </div>
+        <nav class="menu">
                     <li class="nav-item">
-                        <a href="/" class="nav-item active"><i class="material-icons">house</i> Início</a>
+                        <a href="/" class="nav-item active"><i class="material-icons">house</i> <span>Início </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/compras/cadastrar" class="nav-item active"><i class="material-icons">shopping_cart</i> Compras</a>
+                        <a href="/compras/cadastrar" class="nav-item"><i class="material-icons">shopping_cart</i> <span>Compras </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/pagamentos/cadastrar" class="nav-item active"><i class="material-icons">payment</i> Pagamentos</a>
+                        <a href="/pagamentos/cadastrar" class="nav-item"><i class="material-icons">payment</i> <span>Pagamentos </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/alunos/cadastrar" class="nav-item active"><i class="material-icons">person</i> Aluno</a>
+                        <a href="/alunos/cadastrar" class="nav-item"><i class="material-icons">person</i> <span>Aluno </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/turmas/cadastrar" class="nav-item active"><i class="material-icons">group</i> Turmas</a>
+                        <a href="/turmas/cadastrar" class="nav-item"><i class="material-icons">group</i> <span>Turmas </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/turnos/cadastrar" class="nav-item active"><i class="material-icons">access_time</i> Turno</a>
+                        <a href="/turnos/cadastrar" class="nav-item"><i class="material-icons">access_time</i> <span>Turno </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/usuarios/cadastrar" class="nav-item active"><i class="material-icons">lock</i> Usuários</a>
+                        <a href="/usuarios/cadastrar" class="nav-item"><i class="material-icons">lock</i> <span>Usuários </span> 
+                        </a>
                     </li>
-                </ul>
-            </div>
+                    <li class="nav-item">
+                        <a href="#" class="nav-item"><i class="material-icons">logout</i> <span>Sair </span> 
+                        </a>
+                    </li>
         </nav>
     </aside>
 

@@ -40,10 +40,13 @@ public class AlunoController {
 
     @Autowired
     TurmaService serviceTurma;
+
+	private final String sectionName = "Alunos";
     
     @GetMapping(value="/cadastrar")
     public String cadastrar(Aluno aluno, ModelMap model) {
     	model.addAttribute("applicationName", applicationName);
+		model.addAttribute("sectionName", sectionName);
         model.addAttribute("alunos", serviceAluno.buscarTodos());
         return "/aluno/aluno";
     }

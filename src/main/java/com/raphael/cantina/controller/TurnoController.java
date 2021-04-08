@@ -20,6 +20,8 @@ public class TurnoController {
 	@Value("${application.name}")
 	private String applicationName;
 
+	private final String sectionName = "Turnos";
+
     @Autowired
     private TurnoService serviceTurno;
 
@@ -27,6 +29,7 @@ public class TurnoController {
     public String cadastrar(Turno turno, ModelMap model){
 		model.addAttribute("turnos", serviceTurno.buscarTodos());
 		model.addAttribute("applicationName", applicationName);
+		model.addAttribute("sectionName", sectionName);
         return "/turno/turno";
     }
 

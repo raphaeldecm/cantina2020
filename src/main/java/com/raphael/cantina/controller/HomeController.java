@@ -13,9 +13,12 @@ public class HomeController {
     @Value("${application.name}")
     private String applicationName;
 
+    private final String sectionName = "Principal";
+    
     @GetMapping(value="/")
     public String home(Model model) {
         model.addAttribute("applicationName", applicationName);
+        model.addAttribute("sectionName", sectionName);
         return "/home";
     }
     

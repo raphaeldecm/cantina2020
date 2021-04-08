@@ -9,7 +9,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-    <script src="jquery.maskMoney.js" type="text/javascript"></script>
+    <script src="/js/jquery.maskMoney.min.js" type="text/javascript"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -35,18 +35,13 @@
 
 <body>
     <div class="app">
-
-        <div class="logo">
-            <aside class="logo" th:replace="fragments/logo :: logo">
-                <span>logo</span>
-            </aside>
-        </div>
         <div class="header">
-            <header class="header" layout:fragment="header">
+            <header class="header" th:replace="fragments/header :: header">
                 <div>header</div>
             </header>
         </div>
         <div class="menu-area">
+            <input type="checkbox" id="nav-toggle">
             <aside class="menu-area" th:replace="fragments/nav :: menu-area">
                 <span>menu</span>
             </aside>
@@ -81,6 +76,16 @@
 
     <script type="text/javascript">
 
+        $("#nav-toggle").on("click", function () {
+            let c = document.documentElement.style.getPropertyValue('--aside-width');
+            if(c == '80px'){
+                document.documentElement.style.setProperty('--aside-width', '300px');
+            } else {
+                document.documentElement.style.setProperty('--aside-width', '80px');
+            }
+            
+        });
+
         var url = '';
 
         $('button[id*="btn_"]').click(function () {
@@ -94,11 +99,11 @@
         $(function () {
             $('[data-toggle="popover"]').popover();
         });
-
+        
         //Tooltip formulários
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        })
+        });
 
         // Enviando via url nome, saldo e id do aluno para
         // as funções cadastrar e editar ao modificar o select
@@ -197,21 +202,21 @@
         });
 
         $(document).ready(function () {
-            $('#saldo').maskMoney({
-                prefix: 'R$ ',
-                allowNegative: true,
-                thousands: '.',
-                decimal: ',',
-                affixesStay: false
-            });
-
-            $("#valor").maskMoney({
-                prefix: 'R$ ',
-                allowNegative: true,
-                thousands: '.',
-                decimal: ',',
-                affixesStay: false
-            });
+            // $('#saldo').maskMoney({
+            //     prefix: 'R$ ',
+            //     allowNegative: true,
+            //     thousands: '.',
+            //     decimal: ',',
+            //     affixesStay: false
+            // });
+            //
+            // $("#valor").maskMoney({
+            //     prefix: 'R$ ',
+            //     allowNegative: true,
+            //     thousands: '.',
+            //     decimal: ',',
+            //     affixesStay: false
+            // });
         });
 
     </script>

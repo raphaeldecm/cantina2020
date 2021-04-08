@@ -32,6 +32,8 @@ public class CompraController {
     @Value("${application.name}")
     private String applicationName;
 
+    private final String sectionName = "Compras";
+
     @Autowired
     CompraService serviceCompra;
 
@@ -42,6 +44,7 @@ public class CompraController {
     public String compra(Compra compra, ModelMap model) {
         model.addAttribute("compras", serviceCompra.buscarTodos());
         model.addAttribute("applicationName", applicationName);
+        model.addAttribute("sectionName", sectionName);
         return "/compra/compra";
     }
 

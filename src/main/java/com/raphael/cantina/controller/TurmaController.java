@@ -27,6 +27,8 @@ public class TurmaController {
 	@Value("${application.name}")
 	private String applicationName;
 
+	private final String sectionName = "Turmas";
+
     @Autowired
     TurmaService serviceTurma;
 
@@ -40,6 +42,7 @@ public class TurmaController {
     public String cadastrar(Turma turma, ModelMap model){
         model.addAttribute("turmas", serviceTurma.buscarTodos());
         model.addAttribute("applicationName", applicationName);
+		model.addAttribute("sectionName", sectionName);
         return "/turma/turma";
     }
 

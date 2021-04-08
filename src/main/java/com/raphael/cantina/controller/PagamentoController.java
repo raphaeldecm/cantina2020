@@ -28,6 +28,8 @@ public class PagamentoController {
     @Value("${application.name}")
     private String applicationName;
 
+    private final String sectionName = "Pagamentos";
+
     @Autowired
     PagamentoService servicePagamento;
 
@@ -41,6 +43,7 @@ public class PagamentoController {
     public String pagamento(Pagamento pagamento, ModelMap model) {
         model.addAttribute("pagamentos", servicePagamento.buscarTodos());
         model.addAttribute("applicationName", applicationName);
+        model.addAttribute("sectionName", sectionName);
         return "/pagamento/pagamento";
     }
 

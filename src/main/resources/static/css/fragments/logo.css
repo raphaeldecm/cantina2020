@@ -6,12 +6,12 @@ div.logo {
 }
 
 div.logo img {
-    padding: 0px 0px;
-    width: 140px;
+    padding: 5px 5px;
+    width: 240px;
 }
 
 @media(max-width: 576px) {
     div.logo img {
-        width: 100px;
+        width: 150px;
     }
 }

@@ -4,7 +4,7 @@
     --logo-height: 150px;
     --header-height: 150px;
     --menu-top-height: 70px;
-    --aside-width: 225px;
+    --aside-width: 300px;
     --footer-height: 40px;
 
     --shadow:
@@ -27,9 +27,9 @@
         1fr
         var(--footer-height);
     grid-template-areas: 
-        "logo header"
+        "menu header"
         "menu content"
-        "menu footer";
+        "footer footer";
 
     height: 100vh;
     background-color: #F5F5F5;
@@ -56,7 +56,27 @@ div.footer {
     grid-area: footer;
 }
 
-@media(max-width: 768px){
+@media only screen and (max-width: 1100px){
+
+    .app {
+        margin: 0px;
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: 
+            var(--header-height)
+            1fr
+            var(--footer-height);
+        grid-template-areas: 
+            "menu header"
+            "menu content"
+            "footer footer";
+    
+        height: 100vh;
+        background-color: #F5F5F5;
+    }
+}
+
+/* @media(max-width: 768px){
     .app {
         grid-template-rows:
             var(--header-height)
@@ -64,26 +84,26 @@ div.footer {
             1fr
             var(--footer-height);
         grid-template-columns: var(--aside-width) 1fr;
-        grid-template-areas: 
-            "logo header"
+        grid-template-areas:
+            "menu header"
             "menu menu"
             "content content"
             "footer footer";
     }
-}
+} */
 
-@media(max-width: 576px) {
+/* @media(max-width: 576px) {
     .app {
-        grid-template-rows: 
+        grid-template-rows:
             var(--logo-height)
             var(--menu-top-height)
             1fr
             var(--footer-height);
         grid-template-columns: 1fr;
-        grid-template-areas: 
+        grid-template-areas:
             "logo"
             "menu"
             "content"
             "footer";
     }
-}
+} */
