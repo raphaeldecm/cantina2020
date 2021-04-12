@@ -24,7 +24,7 @@ public class DemoApplication {
     @Bean("dataSource")
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/db_cantina_dev?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false");
         driverManagerDataSource.setUsername("root");
         driverManagerDataSource.setPassword("Carvalho.2");
@@ -48,6 +48,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 //		System.setProperty("server.servlet.context-path", "/geces");
 		SpringApplication.run(DemoApplication.class, args);
+        // System.out.print(new BCryptPasswordEncoder().encode("user123"));
 	}
 
 }

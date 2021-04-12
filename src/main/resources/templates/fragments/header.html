@@ -20,12 +20,15 @@
             <p class="lead text-muted" th:text="${sectionName}">
                 Página Compra.
             </p>
+            
         </div>
         <div class="user">
-            <span class="material-icons">perm_identity</span>
-            <div>
-                <h4>Raphael Muniz</h4>
-                <small>Super Admin</small>
+            <span class="material-icons user">perm_identity</span>
+            <div sec:authorize="isAuthenticated()">
+                <h4 sec:authentication="name"> Raphael Muniz</span></h4>
+                <small th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Administrador</small>
+                <small th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Usuário</small>
+                <!-- <small>Super Admin</small> -->
             </div>
         </div>
     </header>

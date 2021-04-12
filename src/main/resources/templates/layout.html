@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html lang="pt" 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -31,6 +33,7 @@
 
     <link href="/css/contents/turno.css" rel="stylesheet" />
     <link href="/css/contents/compra.css" rel="stylesheet" />
+    <link href="/css/contents/usuario.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -63,11 +66,13 @@
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/webjars/jquery/jquery.min.js"></script>
+    <!-- <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- SCRIPTS FOR SELECT -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -75,6 +80,16 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
+
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('a.nav-item');
+        const menuLength = menuItem.length
+
+        for(let i = 0; i < menuLength; i++){
+            if(menuItem[i].href === currentLocation){
+                menuItem[i].className = "active"
+            }
+        }
 
         $("#nav-toggle").on("click", function () {
             let c = document.documentElement.style.getPropertyValue('--aside-width');
@@ -89,7 +104,8 @@
         var url = '';
 
         $('button[id*="btn_"]').click(function () {
-            url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+            url = "http://localhost:8082/" + $(this).attr('id').split("_")[1];
+            alert(url);
         });
 
         $('#ok_confirm').click(function () {
@@ -121,11 +137,21 @@
                 var alunoId = $("#id");
 
                 if ((sPageURL0 == "alunos" && sPageURL1 == "cadastrar")) {
-                    url = "/alunos/cadastrar/" + selectedOption.val() + "/" + nome.val();
-                    window.location.href = url;
+                    if(selectedOption.val() !== ""){
+                        url = "/alunos/cadastrar/" + selectedOption.val() + "/" + nome.val();
+                        window.location.href = url;
+                    } else {
+                        url = "/alunos/cadastrar/";
+                        window.location.href = url;
+                    }
                 } else if ((sPageURL0 == "alunos" && sPageURL1 == "editar")) {
-                    url = "/alunos/editar/" + alunoId.val() + "/" + selectedOption.val();
-                    window.location.href = url;
+                    if(selectedOption.val() !== ""){
+                        url = "/alunos/editar/" + alunoId.val() + "/" + selectedOption.val();
+                        window.location.href = url;
+                    } else {
+                        url = "/alunos/cadastrar/";
+                        window.location.href = url;
+                    }
                 }
                 // window.location.href = url;	
             });
@@ -202,21 +228,21 @@
         });
 
         $(document).ready(function () {
-            // $('#saldo').maskMoney({
-            //     prefix: 'R$ ',
-            //     allowNegative: true,
-            //     thousands: '.',
-            //     decimal: ',',
-            //     affixesStay: false
-            // });
-            //
-            // $("#valor").maskMoney({
-            //     prefix: 'R$ ',
-            //     allowNegative: true,
-            //     thousands: '.',
-            //     decimal: ',',
-            //     affixesStay: false
-            // });
+            $('#saldo').maskMoney({
+                prefix: 'R$ ',
+                allowNegative: true,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: false
+            });
+            
+            $("#valor").maskMoney({
+                prefix: 'R$ ',
+                allowNegative: true,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: false
+            });
         });
 
     </script>

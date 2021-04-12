@@ -40,12 +40,10 @@ aside.menu-area {
 }
 
 .menu a {
-    /* cada link em uma linha */
     padding-left: 1rem;
     display: block;
     text-decoration: none;
     color: #FFF;
-    /* padding: 1rem 0rem 1rem 2rem; */
     font-size: 1.1rem;
 }
 
@@ -63,7 +61,7 @@ aside.menu-area {
 }
 
 .menu a:hover {
-    background: linear-gradient(to right, var(--bg-dark), #00d4ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: linear-gradient(to right, var(--bg-dark), #00d4ff); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 nav {

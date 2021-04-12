@@ -88,6 +88,22 @@ public class AlunoController {
 
 		return mav;
     }
+
+	@GetMapping(value="/cadastrar/{id}")
+	public @ResponseBody ModelAndView getTurmasCadastrarNoName(@PathVariable("id") Long id) {
+		
+		Turno turno = serviceTurno.buscarPorId(id);
+		List<Turma> turmas = serviceTurma.buscarTodosPorTurno(turno);
+		
+		ModelAndView mav = new ModelAndView("aluno/aluno");
+		
+		Aluno aluno = new Aluno();
+		mav.addObject("turmas", turmas);
+		mav.addObject("aluno", aluno);
+		mav.addObject("saldo", aluno.getSaldo());
+
+		return mav;
+    }
     
     @GetMapping("/editar/{id}/{turnoId}/{nomeAluno}")
 	public String preEditar(@PathVariable("id") Long id, @PathVariable("turnoId") Long turnoId, 

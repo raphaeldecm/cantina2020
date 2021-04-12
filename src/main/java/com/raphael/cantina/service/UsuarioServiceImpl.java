@@ -26,34 +26,23 @@ public class UsuarioServiceImpl implements UserDetailsService {
     @Autowired
     private UsuarioDao repository;
 
-    @Transactional
-    public Usuario salvar(Usuario usuario){
-        return repository.save(usuario);
-    }
-    
-    public UserDetails autenticar( Usuario usuario ){
-        UserDetails user = loadUserByUsername(usuario.getLogin());
-        boolean senhasBatem = encoder.matches(usuario.getSenha(), user.getPassword());
-
-        if(senhasBatem){
-            return user;
-        }
-
-        throw new SenhaInvalidaException();
-    }
+    // @Override @Transactional(readOnly = true)
+	// public List<Usuario> buscarTodos() {
+	// 	return repository.findAll();
+	// }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = repository.findByLogin(username)
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Usuario usuario = repository.findByLogin(login)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado na base de dados."));
 
-        String roles = usuario.getRoles().;
+        // String roles = usuario.getRoles();
 
         return User
                 .builder()
                 .username(usuario.getLogin())
                 .password(usuario.getSenha())
-                .roles(roles)
+                .authorities(usuario.getAuthorities())
                 .build();
     }
     

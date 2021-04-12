@@ -13,12 +13,14 @@
     <aside class="menu-area" th:fragment="menu-area">
         
         <div class="logo">
+            <a href="/" >
             <img class="img_logo" src="/imgs/logo_small.svg" alt="">
+            </a>
             <h2><span>GECES</span></h2>
         </div>
         <nav class="menu">
                     <li class="nav-item">
-                        <a href="/" class="nav-item active"><i class="material-icons">house</i> <span>Início </span>
+                        <a href="/" class="nav-item"><i class="material-icons">house</i> <span>Início </span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -41,16 +43,33 @@
                         <a href="/turnos/cadastrar" class="nav-item"><i class="material-icons">access_time</i> <span>Turno </span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a href="/usuarios/cadastrar" class="nav-item"><i class="material-icons">lock</i> <span>Usuários </span> 
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-item"><i class="material-icons">logout</i> <span>Sair </span> 
+                        <a href="/logout" class="nav-item"><i class="material-icons">logout</i> <span>Sair </span> 
                         </a>
                     </li>
         </nav>
     </aside>
+
+    <script src="/webjars/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        // $(document).on('click', 'li a', function () {
+        //     alert("teste");
+        //     $(this).addClass('active').siblings().removeClass('active')
+        // });
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('a');
+        const menuLength = menuItem.length
+        for(let i = 0; i < menuLength; i++){
+            if(menuItem[i].href === currentLocation){
+                menuItem[i].className = "active"
+            }
+        }
+    </script>
 
 </body>
 </html>

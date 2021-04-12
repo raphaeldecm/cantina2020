@@ -1,35 +1,31 @@
 package com.raphael.cantina.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "usuario_roles")
-public class Usuario_Roles extends AbstractEntity<Long> {
+public class Usuario_Roles implements GrantedAuthority {
  
+    @Id
     @Column
     @NotEmpty
     private String role;
 
-    @ManyToOne
-	@JoinColumn(name = "usuario_id_fk")
-	private Usuario usuario;
+    @ManyToMany(mappedBy = "roles")
+    private List<Usuario> usuarios;
 
     public String getRole() {
         return role;
@@ -39,12 +35,18 @@ public class Usuario_Roles extends AbstractEntity<Long> {
         this.role = role;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    @Override
+    public String getAuthority() {
+        // TODO Auto-generated method stub
+        return this.role;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
 }

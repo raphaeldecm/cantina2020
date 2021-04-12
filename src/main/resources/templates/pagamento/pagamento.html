@@ -30,57 +30,68 @@
 
                     <form th:action="${pagamento.data == null} ? @{/pagamentos/salvar} : @{/pagamentos/editar}"
                         th:object="${pagamento}" method="POST">
+                            
+                        <div class="form-row row">
+                            <div class="col-12 mb-3">  
+                                
+                                <label for="nomeAluno" class="col-md-2 col-form-label">Nome</label>
+                                
+                                <select id="aluno" class="form-control selectEdit" th:field="*{aluno}">
+                                    <option value="0">Selecione</option>
+                                    <option th:each="d : ${alunos}" 
+                                            th:value="${d.id}" 
+                                            th:text="${d.nome}">Administração</option>
+                                </select>
+                                
 
-                        
-                        <div class="flex-row">
+                            </div>
+                        </div>  
 
-                            <div class="form-group d-flex flex-wrap col-12">
-                                    
-                                    <div class="p-2 col-10">
-                                        <label for="nomeAluno">Nome</label>
-                                        <select id="aluno" class="form-control selectEdit" th:field="*{aluno}">
-                                            <option value="0">Selecione</option>
-                                            <option th:each="d : ${alunos}" 
-                                                    th:value="${d.id}" 
-                                                    th:text="${d.nome}">Administração</option>
-                                        </select>
-                                    </div>
-                                    <div class="p-2 col-4">
-                                        <label for="saldoAluno">Saldo</label>
-                                        <input type="text" class="form-control" id="saldo" 
-                                            th:value="${saldo}" name="saldo" placeholder="0,00"
-                                            data-mask="#.##0,00" data-mask-reverse="true" readonly />
-                                    </div>
-                                    <div class="p-2 col-4">
-                                        <label for="turmaAluno">Turma</label>
-                                        <input type="text" class="form-control" id="turma" 
-                                            th:value="${turma}" name="turma" readonly />
-                                    </div>
-                                    <div class="p-2 col-4">
-                                        <label for="turnoAluno">Turno</label>
-                                        <input type="text" class="form-control" id="turno"
-                                            th:value="${turno}" name="turno" readonly />
-                                    </div>
+                        <div class="form-row row">
+
+                            <div class="col-md-4 mb-3">
+                                <label for="saldoAluno">Saldo</label>
+                                <input type="text" class="form-control" id="saldo" 
+                                    th:value="${saldo}" name="saldo" placeholder="0,00"
+                                    data-mask="#.##0,00" data-mask-reverse="true" readonly />
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="turmaAluno">Turma</label>
+                                    <input type="text" class="form-control" id="turma" 
+                                        th:value="${turma}" name="turma" readonly />
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="turnoAluno">Turno</label>
+                                    <input type="text" class="form-control" id="turno"
+                                        th:value="${turno}" name="turno" readonly />
                             </div>
                         </div>
+
                         <hr />
+                        
                         <h5 class="mt-4">Dados da pagamento</h5>
                         <hr />
-                        <div class="form-row">
+                        <div class="form-row row">
 
-                            <div class="form-group d-flex flex-row bd-highlight mb-3">
-                                <div class="p-2 bd-highlight">
-                                    <label for="data">Data da pagamento</label>
+                            <div class="form-group row col-6 mb-3"> 
+                                <label for="data" class="col-sm-4 col-form-label">Data </label>
+                                <div class="col-sm-8">
                                     <input type="date" class="form-control" id="data" th:field="*{data}" />
                                 </div>
-                                <div class="p-2 bd-highlight">
-                                    <label for="valorpagamento">Valor da pagamento</label>
+                            </div>
+                            
+                            <div class="form-group row col-6 mb-3">
+                                <label for="valorpagamento" class="col-sm-4 col-form-label">Valor </label>
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" id="valor" value="0.00" placeholder="0.00"
                                         data-mask="#.##0,00" data-mask-reverse="true" th:field="*{valor}" />
-                                    
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="form-row row">
                             <div class="form-group col-12">
                                 <label for="descricao">Descrição</label>
                                 <textarea class="form-control" id="descricao" rows="3"
@@ -88,14 +99,14 @@
                             </div>
                         </div>
                         <hr />
-                        <div class="form-row">
+
+                        <div class="form-group row justify-content-end">
                             <div class="d-flex col-12 justify-content-end">
-                                <input type="hidden" id="id" th:field="*{id}" />
-                                <a href="/pagamentos/cadastrar" class="btn btn-outline-warning mr-3" role="button">Cancelar
-                                </a>
-                                <button type="submit" class="btn btn-outline-primary btn-sm">Salvar</button>
+                                <input type="hidden" id="id" th:field="*{id}"/>
+                                <button type="submit" class="btn btn-primary ml-3">Salvar</button>
                             </div>
                         </div>
+
                     </form>
                 </div>
 

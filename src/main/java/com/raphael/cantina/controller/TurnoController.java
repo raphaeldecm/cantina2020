@@ -56,7 +56,7 @@ public class TurnoController {
 
     @GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-
+		System.out.println("TESTE !");
 		if (serviceTurno.turnoTemTurma(id)) {
 			attr.addFlashAttribute("fail", "Turno não removido. Possui turma(s) vinculada(s).");
 		} else {

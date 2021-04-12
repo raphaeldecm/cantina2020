@@ -48,6 +48,14 @@ div.header h1 {
     margin-top: -3px;
 }
 
+div.info h1{
+    color: var(--bg-dark);
+}
+
+.material-icons {
+    font-size: 40px;
+}
+
 @media only screen and (max-width: 1100px){
 
     .header {
